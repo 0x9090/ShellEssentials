@@ -1,5 +1,6 @@
 #!/bin/sh
 echo "Build script for CentOS 7, MariaDB, and Nginx\n"
+echo "...and a bash playground - because whatever"
 
 username="nops"
 
