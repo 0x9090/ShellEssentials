@@ -24,8 +24,11 @@ echo "Updating and Configuring Yum"
 yum update -y
 yum install yum-cron -y
 
-echo "Customizing Vim" >> /home/$username/.vimrc
-echo "set smartindent"
+echo "Customizing Vim"
+echo "set smartindent" >> /home/$username/.vimrc
+echo "set tabstop=4" >> /home/$username/.vimrc
+echo "set shiftwidth=4" >> /home/$username/.vimrc
+echo "set expandtab" >> /home/$username/.vimrc
 
 echo "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.0/centos7-amd64\ngpgkey = https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck = 1\npriority = 1" | tee /home/alawrence/test.repo
 
