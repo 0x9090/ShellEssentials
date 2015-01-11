@@ -1,7 +1,9 @@
 #!/bin/sh
 echo "Build script for CentOS 7, MariaDB, and Nginx\n"
 
-if [ "$(id -u)" != "0" ]; then
+username="nops"
+
+if [ $(id -u) != 0 ]; then
 	echo "This script must be run as root" 1>&2
 	exit 1
 fi
@@ -20,6 +22,9 @@ iptables -P OUTPUT ACCEPT
 echo "Updating and Configuring Yum"
 yum update -y
 yum install yum-cron -y
+
+echo "Customizing Vim" >> /home/$username/.vimrc
+echo "set smartindent"
 
 echo "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.0/centos7-amd64\ngpgkey = https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck = 1\npriority = 1" | tee /home/alawrence/test.repo
 
