@@ -2,7 +2,7 @@
 echo "Build script for CentOS 7, MariaDB, and Nginx\n"
 echo "...and a bash playground - because whatever"
 
-username="nops"
+username=$SUDO_USER
 
 if [ $(id -u) != 0 ]; then
 	echo "This script must be run as root" 1>&2
