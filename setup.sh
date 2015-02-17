@@ -29,7 +29,13 @@ echo "set expandtab" >> /home/$username/.vimrc
 echo "Updating and Configuring Yum"
 yum update -y
 yum install yum-cron -y
+#TODO add autopatching option to yum-cron config
+systemctl start yum-cron.service
 
-echo "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.0/centos7-amd64\ngpgkey = https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck = 1\npriority = 1" | tee /home/$username/test.repo
+exit
 
-echo
+# not working stuff
+
+#export PS1="\[\e[00;37m\]------------------------------------------------------------------------------\n\u@\W: \[\e[0m\]"
+#alias lsa="ls -alh"
+#echo "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.0/centos7-amd64\ngpgkey = https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck = 1\npriority = 1" | tee /home/$username/test.repo
