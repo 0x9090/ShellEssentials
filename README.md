@@ -1,5 +1,5 @@
 # ShellEssentials
-CentOS & Debian Base OS Setup Script - Installs things I like
+CentOS & Debian OS setup script - installs things I like
 
 Don't actually use this:
 
