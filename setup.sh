@@ -32,13 +32,13 @@ iptables -P OUTPUT ACCEPT
 	
 
 echo "Updating and Configuring Yum / Apt"
-if [ $distro_code == 1]; then
+if [[ $distro_code == 1 ]]; then
 	apt update && apt upgrade -y
 	apt install vim sudo aptitude unattended-upgrades -y
 	echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
 	echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
 	apt install iptables-persistent -y
-elif [ $distro_code == 2]; then
+elif [[ $distro_code == 2 ]]; then
 	yum update -y
 	yum install vim yum-cron -y
 	#TODO add autopatching option to yum-cron config
