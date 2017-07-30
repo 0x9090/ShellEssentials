@@ -1,6 +1,5 @@
-#!/bin/sh
+#!/bin/bash
 echo "Build script for CentOS 7, MariaDB, and Nginx\n"
-echo "...and a bash playground - because whatever"
 
 username=$SUDO_USER
 distro=$(uname -a)
@@ -11,10 +10,10 @@ if [ $(id -u) != 0 ]; then
 	exit 1
 fi
 
-if [[ $distro == *"Debian"* ]]; then
+if [[ $distro == *Debian* ]]; then
 	distro_code=1
 	echo "Detected Debian - OK!"
-elif [[ $distro == *"CentOS"* ]]; then
+elif [[ $distro == *CentOS* ]]; then
 	distro_code=2
 	echo "Detected CentOS - OK!"
 fi
@@ -35,16 +34,20 @@ iptables -P OUTPUT ACCEPT
 echo "Updating and Configuring Yum / Apt"
 if [ $distro_code == 1]; then
 	apt update && apt upgrade -y
-	apt install vim sudo unattended-upgrades iptables-persistent
+	apt install vim sudo aptitude unattended-upgrades -y
+	echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
+	echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
+	apt install iptables-persistent -y
 elif [ $distro_code == 2]; then
 	yum update -y
-	yum install yum-cron -y
+	yum install vim yum-cron -y
 	#TODO add autopatching option to yum-cron config
 	systemctl start yum-cron.service
 	service iptables save
 fi
 
 echo "Customizing Vim"
+rm /home/$username/.vimrc
 echo "set smartindent" >> /home/$username/.vimrc
 echo "set tabstop=4" >> /home/$username/.vimrc
 echo "set shiftwidth=4" >> /home/$username/.vimrc
