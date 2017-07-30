@@ -18,7 +18,6 @@ elif [[ $distro == *CentOS* ]]; then
 	echo "Detected CentOS - OK!"
 fi
 
-
 echo "Configuring Firewall"
 iptables -P INPUT ACCEPT
 iptables -F
@@ -30,7 +29,6 @@ iptables -P INPUT DROP
 iptables -P FORWARD DROP
 iptables -P OUTPUT ACCEPT
 	
-
 echo "Updating and Configuring Yum / Apt"
 if [[ $distro_code == 1 ]]; then
 	apt update && apt upgrade -y
@@ -62,9 +60,9 @@ rm /root/.bashrc
 echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\[\\e[0m\\]\\[\\e[00;31m\\]\\u\\[\\e[0m\\]\\[\\e[00;37m\\]@\\W: \\[\\e[0m\\]\"" >> /root/.bashrc
 
 
+
 clear
 exit
 
 # todo stuff
-# Red PS1="\[\e[01;31m\]$PS1\[\e[00m\]"
 #echo "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.0/centos7-amd64\ngpgkey = https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck = 1\npriority = 1" | tee /home/$username/test.repo
