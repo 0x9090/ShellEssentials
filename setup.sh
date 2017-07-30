@@ -56,8 +56,8 @@ echo "set expandtab" >> /home/$username/.vimrc
 echo "Customizing Bash"
 rm /home/$username/.bashrc
 echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\u@\\W: \\[\\e[0m\\]\"" >> /home/$username/.bashrc
-echo "force_color_prompt=yes" >> /home/$username/.bashrc
-echo "alias lsa=\"ls -alh\"" >> /home/$username/.bashrc
+echo "alias ls=\"ls --color\"" >> /home/$username/.bashrc
+echo "alias lsa=\"ls -alh --color\"" >> /home/$username/.bashrc
 
 exit
 
