@@ -56,9 +56,10 @@ rm /home/$username/.bashrc
 echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\u@\\W: \\[\\e[0m\\]\"" >> /home/$username/.bashrc
 echo "alias ls=\"ls --color\"" >> /home/$username/.bashrc
 echo "alias lsa=\"ls -alh --color\"" >> /home/$username/.bashrc
+rm /home/$username/.inputrc
+echo "set completion-ignore-case on" >> /home/$username/.inputrc
 rm /root/.bashrc
 echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\[\\e[0m\\]\\[\\e[00;31m\\]\\u\\[\\e[0m\\]\\[\\e[00;37m\\]@\\W: \\[\\e[0m\\]\"" >> /root/.bashrc
-
 
 
 clear
