@@ -59,7 +59,7 @@ echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------
 echo "alias ls=\"ls --color\"" >> /home/$username/.bashrc
 echo "alias lsa=\"ls -alh --color\"" >> /home/$username/.bashrc
 rm /root/.bashrc
-echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\[\\e[0m\\]\\[\\e[01;31m\\]\\u\\[\\e[0m\\]\\[\\e[00;37m\\]@\\W: \\[\\e[0m\\]\"" >> /root/.bashrc
+echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\[\\e[0m\\]\\[\\e[00;31m\\]\\u\\[\\e[0m\\]\\[\\e[00;37m\\]@\\W: \\[\\e[0m\\]\"" >> /root/.bashrc
 
 
 clear
