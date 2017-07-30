@@ -58,11 +58,13 @@ rm /home/$username/.bashrc
 echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\u@\\W: \\[\\e[0m\\]\"" >> /home/$username/.bashrc
 echo "alias ls=\"ls --color\"" >> /home/$username/.bashrc
 echo "alias lsa=\"ls -alh --color\"" >> /home/$username/.bashrc
+rm /root/.bashrc
+echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\[\\e[0m\\]\\[\\e[01;31m\\]\\u\\[\\e[0m\\]\\[\\e[00;37m\\]@\\W: \\[\\e[0m\\]\"" >> /root/.bashrc
 
+
+clear
 exit
 
-# not working stuff
-
-#export PS1="\[\e[00;37m\]------------------------------------------------------------------------------\n\u@\W: \[\e[0m\]"
-#alias lsa="ls -alh"
+# todo stuff
+# Red PS1="\[\e[01;31m\]$PS1\[\e[00m\]"
 #echo "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.0/centos7-amd64\ngpgkey = https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck = 1\npriority = 1" | tee /home/$username/test.repo
