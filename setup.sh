@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Build script for CentOS 7, MariaDB, and Nginx\n"
+echo "Nops's Happy Shell\n"
 
 username=$SUDO_USER
 distro=$(uname -a)
