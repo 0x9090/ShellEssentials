@@ -16,6 +16,9 @@ if [[ $distro == *Debian* ]]; then
 elif [[ $distro == *CentOS* ]]; then
 	distro_code=2
 	echo "Detected CentOS - OK!"
+elif [[ $distro == *Darwin* ]]; then
+	distro_code=3
+	echo "Detected MacOS - OK!"
 fi
 
 echo "Configuring Firewall"
