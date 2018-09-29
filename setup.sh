@@ -7,6 +7,7 @@ username=$SUDO_USER
 distro=$(uname -a)
 distro_code=0
 home_path=/home/$username
+bashrc_path=$home_path/.bashrc
 
 if [ $(id -u) != 0 ]; then
 	echo "This script must be run as root" 1>&2
@@ -63,30 +64,33 @@ elif [[ $distro_code == 3 ]]; then
 fi
 
 echo "Customizing Vim"
-rm /home/$username/.vimrc
-echo "set smartindent" >> /home/$username/.vimrc
-echo "set tabstop=4" >> /home/$username/.vimrc
-echo "set shiftwidth=4" >> /home/$username/.vimrc
-echo "set softtabstop=4" >> /home/$username/.vimrc
-echo "set autoindent" >> /home/$username/.vimrc
-echo "set expandtab" >> /home/$username/.vimrc
-echo "set showcmd" >> /home/$username/.vimrc
-echo "set ruler" >> /home/$username/.vimrc
-echo "set backspace=indent,eol,start" >> /home/$username/.vimrc
-echo "syntax on" >> /home/$username/.vimrc
+rm $home_path/.vimrc
+echo "set smartindent" >> $home_path/.vimrc
+echo "set tabstop=4" >> $home_path/.vimrc
+echo "set shiftwidth=4" >> $home_path/.vimrc
+echo "set softtabstop=4" >> $home_path/.vimrc
+echo "set autoindent" >> $home_path/.vimrc
+echo "set expandtab" >> $home_path/.vimrc
+echo "set showcmd" >> $home_path/.vimrc
+echo "set ruler" >> $home_path/.vimrc
+echo "set backspace=indent,eol,start" >> $home_path/.vimrc
+echo "syntax on" >> $home_path/.vimrc
 
 echo "Customizing Bash"
-rm /home/$username/.bashrc
-echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\u@\\W: \\[\\e[0m\\]\"" >> /home/$username/.bashrc
-echo "alias ls=\"ls --color\"" >> /home/$username/.bashrc
-echo "alias lsa=\"ls -alh --color\"" >> /home/$username/.bashrc
-rm /home/$username/.inputrc
-echo "set completion-ignore-case on" >> /home/$username/.inputrc
-rm /root/.bashrc
-echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\[\\e[0m\\]\\[\\e[00;31m\\]\\u\\[\\e[0m\\]\\[\\e[00;37m\\]@\\W: \\[\\e[0m\\]\"" >> /root/.bashrc
+if [[ $distro_code == 3 ]]; then
+	bashrc_path = $home_path/.bash_profile
+else
+rm $bashrc_path
+echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\u@\\W: \\[\\e[0m\\]\"" >> $bashrc_path
+echo "alias ls=\"ls --color\"" >> $bashrc_path
+echo "alias lsa=\"ls -alh --color\"" >> $bashrc_path
+if [[ ! $distro_code == 3 ]]; then
+	rm $home_path/.inputrc
+	echo "set completion-ignore-case on" >> $home_path/.inputrc
+	rm /root/.bashrc
+	echo "export PS1=\"\\[\\e[00;37m\\]---------------------------------------------\\n\\[\\e[0m\\]\\[\\e[00;31m\\]\\u\\[\\e[0m\\]\\[\\e[00;37m\\]@\\W: \\[\\e[0m\\]\"" >> /root/.bashrc
+fi
 
-
-clear
 exit
 
 # todo stuff
