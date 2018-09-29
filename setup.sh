@@ -49,7 +49,13 @@ rm /home/$username/.vimrc
 echo "set smartindent" >> /home/$username/.vimrc
 echo "set tabstop=4" >> /home/$username/.vimrc
 echo "set shiftwidth=4" >> /home/$username/.vimrc
+echo "set softtabstop=4" >> /home/$username/.vimrc
+echo "set autoindent" >> /home/$username/.vimrc
 echo "set expandtab" >> /home/$username/.vimrc
+echo "set showcmd" >> /home/$username/.vimrc
+echo "set ruler" >> /home/$username/.vimrc
+echo "set backspace=indent,eol,start" >> /home/$username/.vimrc
+echo "syntax on" >> /home/$username/.vimrc
 
 echo "Customizing Bash"
 rm /home/$username/.bashrc
