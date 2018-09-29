@@ -15,7 +15,7 @@ if [ $(id -u) != 0 ]; then
 fi
 
 echo "This script will drop active network connections, modify your home environment, and install things. "
-read -p "Cool?" -n 1 -r
+read -p "Cool?  [Y/N]" -n 1 -r
 echo
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
