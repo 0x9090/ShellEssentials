@@ -1,6 +1,8 @@
 #!/bin/bash
 echo "Nops's Happy Shell\n"
 
+set -e
+
 username=$SUDO_USER
 distro=$(uname -a)
 distro_code=0
@@ -10,6 +12,15 @@ if [ $(id -u) != 0 ]; then
 	echo "This script must be run as root" 1>&2
 	exit 1
 fi
+
+echo "This script will drop active network connections, modify your home environment, and install things. "
+read -p "Cool?" -n 1 -r
+echo
+if [[ ! $REPLY =~ ^[Yy]$ ]]
+then
+	exit
+fi
+
 
 if [[ $distro == *Debian* ]]; then
 	distro_code=1
@@ -23,8 +34,8 @@ elif [[ $distro == *Darwin* ]]; then
 	echo "Detected MacOS - OK!"
 fi
 
-echo "Configuring Firewall"
-iptables -P INPUT ACCEPT
+echo "--- Configuring Firewall ---"
+iptables -P INPUT DROP
 iptables -F
 iptables -X
 iptables -A INPUT -i lo -j ACCEPT
@@ -34,7 +45,7 @@ iptables -P INPUT DROP
 iptables -P FORWARD DROP
 iptables -P OUTPUT ACCEPT
 	
-echo "Updating and Configuring Yum / Apt"
+echo "--- Updating and Configuring Yum / Apt ---"
 if [[ $distro_code == 1 ]]; then
 	apt update && apt upgrade -y
 	apt install vim sudo aptitude unattended-upgrades -y
@@ -47,6 +58,8 @@ elif [[ $distro_code == 2 ]]; then
 	#TODO add autopatching option to yum-cron config
 	systemctl start yum-cron.service
 	service iptables save
+elif [[ $distro_code == 3 ]]; then
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 echo "Customizing Vim"
