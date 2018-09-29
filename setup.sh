@@ -4,6 +4,7 @@ echo "Nops's Happy Shell\n"
 username=$SUDO_USER
 distro=$(uname -a)
 distro_code=0
+home_path=/home/$username
 
 if [ $(id -u) != 0 ]; then
 	echo "This script must be run as root" 1>&2
@@ -18,6 +19,7 @@ elif [[ $distro == *CentOS* ]]; then
 	echo "Detected CentOS - OK!"
 elif [[ $distro == *Darwin* ]]; then
 	distro_code=3
+	home_path=/Users/$username
 	echo "Detected MacOS - OK!"
 fi
 
