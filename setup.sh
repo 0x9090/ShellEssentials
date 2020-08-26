@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Nops's Happy Shell\n"
+echo "Nops's Shell\n"
 
 set -e
 
